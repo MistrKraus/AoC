@@ -194,7 +194,7 @@ namespace AoC.AoC_2022
 
         /// <summary>
         /// Day 3 Part 1
-        /// Priorities sum
+        /// Duplicit priorities sum
         /// </summary>
         public static void Day3_1()
         {
@@ -229,14 +229,6 @@ namespace AoC.AoC_2022
 
                         sum += priority;
 
-                        //foreach (char let in line)
-                        //{
-                        //    if (letter == let)
-                        //    {
-                        //        sum += priority;
-                        //    }
-                        //}
-
                         break;
                     }
                 }
@@ -246,6 +238,67 @@ namespace AoC.AoC_2022
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Day 3 Part 2
+        /// Group priorities sum
+        /// </summary>
+        public static void Day3_2()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:\\PetrKraus\\Programovani\\C#\\AoC\\AoC_2022\\Resources\\input3.txt");
+                string line;
+                string[] group = new string[3];
+                int priority;
+                int groupCounter = 0;
+                int sum = 0;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    group[groupCounter++] = line;
+
+                    if (groupCounter < 3)
+                    {
+                        continue;
+                    }
+
+                    groupCounter = 0;
+
+                    foreach (char letter in group[0])
+                    {
+                        if (!group[1].Contains(letter))
+                        {
+                            continue;
+                        }
+
+                        if (!group[2].Contains(letter))
+                        {
+                            continue;
+                        }
+
+                        if (letter > 96)
+                        {
+                            priority = letter - 96;
+                        }
+                        else
+                        {
+                            priority = letter - 38;
+                        }
+
+                        sum += priority;
+
+                        break;
+                    }
+                }
+
+                Console.WriteLine(sum);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
     }

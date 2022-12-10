@@ -21,7 +21,11 @@ namespace AoC
             //AoC_2022.Day1_5.Day5_1();
             //AoC_2022.Day1_5.Day5_2();
             //AoC_2022.Day6.Day6_1();
-            AoC_2022.Day6.Day6_2();
+            //AoC_2022.Day6.Day6_2();
+            
+            //AoC_2022.Day10.Day10_1();
+            AoC_2022.Day10.Day10_2();
+
 
             Console.ReadLine();
         }

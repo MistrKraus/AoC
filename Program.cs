@@ -17,7 +17,9 @@ namespace AoC
             //AoC_2022.AoC2022.Day3_1();
             //AoC_2022.AoC2022.Day3_2();
             //AoC_2022.AoC2022.Day4_1();
-            AoC_2022.AoC2022.Day4_2();
+            //AoC_2022.AoC2022.Day4_2();
+            //AoC_2022.AoC2022.Day5_1();
+            AoC_2022.AoC2022.Day5_2();
 
             Console.ReadLine();
         }

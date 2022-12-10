@@ -349,8 +349,8 @@ namespace AoC.AoC_2022
         }
 
         /// <summary>
-        /// Day 4 Part 1
-        /// Total overlaps
+        /// Day 4 Part 2
+        /// Partial overlaps
         /// </summary>
         public static void Day4_2()
         {
@@ -380,8 +380,8 @@ namespace AoC.AoC_2022
                     s2_low = Int32.Parse(section[0]);
                     s2_high = Int32.Parse(section[1]);
 
-                    if ((s1_high >= s2_low && s1_high <= s2_high) || (s1_low >= s2_low && s1_low <= s2_high))// ||
-                        //(s2_high >= s1_low && s2_high <= s1_high) || (s2_low >= s1_low && s2_low <= s1_high))
+                    if ((s1_high >= s2_low && s1_high <= s2_high) || (s1_low >= s2_low && s1_low <= s2_high) ||
+                        (s2_high >= s1_low && s2_high <= s1_high) || (s2_low >= s1_low && s2_low <= s1_high))
                     {
                         overlapCount++;
                     }
@@ -392,6 +392,161 @@ namespace AoC.AoC_2022
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Day 5 Part 1
+        /// Top items
+        /// </summary>
+        public static void Day5_1()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:\\PetrKraus\\Programovani\\C#\\AoC\\AoC_2022\\Resources\\input5.txt");
+                string line;
+                List<string> storageLines = new List<string>();
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.Length == 0)
+                    {
+                        break;
+                    }
+
+                    storageLines.Add(line);
+                }
+
+                string num = storageLines[storageLines.Count - 1].Substring(storageLines[storageLines.Count - 1].LastIndexOf("   "));
+                int storageSize = int.Parse(num);
+                int itemId;
+                string item;
+                Stack<string>[] stack = new Stack<string>[storageSize];
+
+                for (int i = 0; i < storageSize; i++)
+                {
+                    stack[i] = new Stack<string>();
+                }
+                
+                for (int i = storageLines.Count - 2; i > -1; i--)
+                {
+                    while (true)
+                    {
+                        Console.WriteLine(storageLines[i]);
+                        
+                        itemId = storageLines[i].LastIndexOf("[") + 1;
+                        item = storageLines[i].Substring(itemId, storageLines[i].LastIndexOf("]") - itemId);
+                        stack[storageLines[i].LastIndexOf("[") / 4].Push(item);
+                        storageLines[i] = storageLines[i].Substring(0, storageLines[i].LastIndexOf("]") - 2);
+
+                        if (storageLines[i].LastIndexOf("[") == -1)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                string[] move;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    move = line.Split(' ');
+
+                    for (int i = 0; i < int.Parse(move[1]); i++)
+                    {
+                        stack[int.Parse(move[5]) - 1].Push(stack[int.Parse(move[3]) - 1].Pop());
+                    }
+                }
+
+                for (int i = 0; i < stack.Length; i ++)
+                {
+                    Console.Write(stack[i].Peek());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Day 5 Part 1
+        /// Top items
+        /// </summary>
+        public static void Day5_2()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:\\PetrKraus\\Programovani\\C#\\AoC\\AoC_2022\\Resources\\input5.txt");
+                string line;
+                List<string> storageLines = new List<string>();
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.Length == 0)
+                    {
+                        break;
+                    }
+
+                    storageLines.Add(line);
+                }
+
+                string num = storageLines[storageLines.Count - 1].Substring(storageLines[storageLines.Count - 1].LastIndexOf("   "));
+                int storageSize = int.Parse(num);
+                int itemId;
+                string item;
+                Stack<string>[] stack = new Stack<string>[storageSize];
+
+                for (int i = 0; i < storageSize; i++)
+                {
+                    stack[i] = new Stack<string>();
+                }
+
+                for (int i = storageLines.Count - 2; i > -1; i--)
+                {
+                    while (true)
+                    {
+                        Console.WriteLine(storageLines[i]);
+
+                        itemId = storageLines[i].LastIndexOf("[") + 1;
+                        item = storageLines[i].Substring(itemId, storageLines[i].LastIndexOf("]") - itemId);
+                        stack[storageLines[i].LastIndexOf("[") / 4].Push(item);
+                        storageLines[i] = storageLines[i].Substring(0, storageLines[i].LastIndexOf("]") - 2);
+
+                        if (storageLines[i].LastIndexOf("[") == -1)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                string[] move;
+                Stack<string> load = new Stack<string>();
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    move = line.Split(' ');
+                    load.Clear();
+
+                    for (int i = 0; i < int.Parse(move[1]); i++)
+                    {
+                        load.Push(stack[int.Parse(move[3]) - 1].Pop());
+                    }
+
+                    for (int i = 0; i < int.Parse(move[1]); i++)
+                    {
+                        stack[int.Parse(move[5]) - 1].Push(load.Pop());
+                    }
+                }
+
+                for (int i = 0; i < stack.Length; i++)
+                {
+                    Console.Write(stack[i].Peek());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
     }

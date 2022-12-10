@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AoC.AoC_2022
 {
-    class AoC2022
+    class Day1_5
     {
         /// <summary>
         /// Day 1 Part 1
@@ -470,8 +470,8 @@ namespace AoC.AoC_2022
         }
 
         /// <summary>
-        /// Day 5 Part 1
-        /// Top items
+        /// Day 5 Part 2
+        /// 
         /// </summary>
         public static void Day5_2()
         {
@@ -506,8 +506,6 @@ namespace AoC.AoC_2022
                 {
                     while (true)
                     {
-                        Console.WriteLine(storageLines[i]);
-
                         itemId = storageLines[i].LastIndexOf("[") + 1;
                         item = storageLines[i].Substring(itemId, storageLines[i].LastIndexOf("]") - itemId);
                         stack[storageLines[i].LastIndexOf("[") / 4].Push(item);

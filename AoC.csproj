@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AoC_2022\AoC2022.cs" />
+    <Compile Include="AoC_2022\Day1-5.cs" />
+    <Compile Include="AoC_2022\Day10.cs" />
+    <Compile Include="AoC_2022\Day6.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +59,7 @@
     <Content Include="AoC_2022\Resources\input3.txt" />
     <Content Include="AoC_2022\Resources\input4.txt" />
     <Content Include="AoC_2022\Resources\input5.txt" />
+    <Content Include="AoC_2022\Resources\input6.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

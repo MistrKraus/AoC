@@ -61,7 +61,7 @@ namespace AoC.AoC_2022
                 int minCaloriesId = 0;
                 int totalCalories = 0;
                 int total3Calories = 0;
-                int[] maxCalories = new int[3] { 0, 0, 0};
+                int[] maxCalories = new int[3] { 0, 0, 0 };
 
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -299,6 +299,99 @@ namespace AoC.AoC_2022
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Day 4 Part 1
+        /// Total overlaps
+        /// </summary>
+        public static void Day4_1()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:\\PetrKraus\\Programovani\\C#\\AoC\\AoC_2022\\Resources\\input4.txt");
+                string line;
+                string[] sections = new string[2];
+                string[] section = new string[2];
+
+                int s1_low;
+                int s1_high;
+                int s2_low;
+                int s2_high;
+
+                int overlapCount = 0;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sections = line.Split(',');
+
+                    section = sections[0].Split('-');
+                    s1_low = Int32.Parse(section[0]);
+                    s1_high = Int32.Parse(section[1]);
+
+                    section = sections[1].Split('-');
+                    s2_low = Int32.Parse(section[0]);
+                    s2_high = Int32.Parse(section[1]);
+
+                    if ((s1_low <= s2_low && s1_high >= s2_high) || (s2_low <= s1_low && s2_high >= s1_high))
+                    {
+                        overlapCount++;
+                    }
+                }
+
+                Console.WriteLine(overlapCount);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Day 4 Part 1
+        /// Total overlaps
+        /// </summary>
+        public static void Day4_2()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:\\PetrKraus\\Programovani\\C#\\AoC\\AoC_2022\\Resources\\input4.txt");
+                string line;
+                string[] sections = new string[2];
+                string[] section = new string[2];
+
+                int s1_low;
+                int s1_high;
+                int s2_low;
+                int s2_high;
+
+                int overlapCount = 0;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sections = line.Split(',');
+
+                    section = sections[0].Split('-');
+                    s1_low = Int32.Parse(section[0]);
+                    s1_high = Int32.Parse(section[1]);
+
+                    section = sections[1].Split('-');
+                    s2_low = Int32.Parse(section[0]);
+                    s2_high = Int32.Parse(section[1]);
+
+                    if ((s1_high >= s2_low && s1_high <= s2_high) || (s1_low >= s2_low && s1_low <= s2_high))// ||
+                        //(s2_high >= s1_low && s2_high <= s1_high) || (s2_low >= s1_low && s2_low <= s1_high))
+                    {
+                        overlapCount++;
+                    }
+                }
+
+                Console.WriteLine(overlapCount);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }
